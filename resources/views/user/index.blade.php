@@ -47,6 +47,7 @@ Halaman data user
                     </thead>
                     <tbody>
                         @foreach ($user as $item)
+                        @if ($item->level === 'penjual')
                         <tr>
                             <td>{{$item->name}}</td>
                             <td>{{$item->email}}</td>
@@ -62,6 +63,7 @@ Halaman data user
                                 </div>
                             </td>
                         </tr>
+                        @endif
                         @endforeach
                     </tbody>
                     <tfoot>

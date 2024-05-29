@@ -275,7 +275,6 @@
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
         $.widget.bridge('uibutton', $.ui.button)
-
     </script>
     <!-- Bootstrap 4 -->
     <script src="{{asset('template/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -336,8 +335,9 @@
                 "autoWidth": false,
                 "responsive": true,
             });
+            // Summernote
+            $('#ck').summernote()
         });
-
     </script>
 </body>
 

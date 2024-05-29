@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('nama_toko');
             $table->enum('kategori_toko',['elektronik','otomotif','sembako', 'fashion', 'makanan','obat','aksesoris','perabotan']);
             $table->text('desc_toko');
-            $table->date('hari_buka');
-            $table->date('hari_libur');
+            $table->string('hari_buka');
+            $table->text( 'files')->nullable();
             $table->time( 'jam_libur' );
             $table->time( 'jam_buka' );
             $table->boolean('status_aktif')->default('0');
