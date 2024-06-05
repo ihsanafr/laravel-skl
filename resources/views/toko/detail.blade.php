@@ -101,18 +101,15 @@ Detail {{$data->nama_toko}}
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <form action="{{route('toko.update',$data->id)}}" method="post">
+                <form action="{{route('toko.update',$data->id)}}" method="post" enctype="multipart/form-data">
                     @csrf
                     {{method_field('PUT')}}
 
                     <div class="modal-body">
-                        <form-group>
+                        <div class="form-group">
                             <label>Nama Toko</label>
                             <input type="text" name="nama_toko" value="{{ $data->nama_toko }}" required class="form-control"> 
-                        </form-group>
-
-                        
-
+                        </div>
                         <div class="row justify-content-arround">
                             <div class="form-group col-md-6">
                                 <label>Jam Buka</label>
@@ -180,7 +177,7 @@ Detail {{$data->nama_toko}}
 
                         <div class="form-group">
                             <label for="icon_toko">Icon Toko</label>
-                            <input type="file" class="form-control" required id="icon_toko" name="icon_toko">
+                            <input type="file" class="form-control" id="icon_toko" name="icon_toko">
                             
                         </div>
 

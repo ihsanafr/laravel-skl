@@ -95,6 +95,16 @@ class TokoController extends Controller
     {
         $toko = Toko::find($id);
         $input = $request->all();
+
+        if($request->hasFile('icon_toko')) 
+        {
+            $folder = 'public/images/toko'; //membuat folder penyimpanan file
+            $gambar = $request->file('icon_toko'); //mengambil data dari request icon_toko
+            $nama_gambar = $gambar->getClientOriginalName(); //memberikan nama pada file yang diupload.
+            $path = $request->file('icon_toko')->storeAs($folder, $nama_gambar); //mengirimkan gambar ke folder
+            $input['icon_toko'] = $nama_gambar; //memberikan nama yang dikirimkan ke database 
+        }
+
         $validasi = Validator::make($input,[
             'nama_toko' => 'required|max:128|string|min:4',
             'desc_toko' => 'required|max:200',
@@ -102,7 +112,6 @@ class TokoController extends Controller
             'hari_buka' => 'required',
             'jam_buka' => 'required',
             'jam_libur' => 'required',
-            'icon_toko' => 'nullable',
         ]);
 
         if($validasi->fails())
@@ -112,15 +121,7 @@ class TokoController extends Controller
 
         // Input untuk hari
         // input toko
-        if ($request->hasFile('icon_toko')) {
-            $folder = 'public/images/toko';
-            $gambar = $request->file('icon_toko');
-            $nama_gambar = $gambar->getClientOriginalName();
-            $path = $request->file('icon_toko')->updateAs($folder, $nama_gambar);
-            $input['icon_toko'] = $nama_gambar;
-        } else {
-            unset($input['icon_toko']);
-        }
+       
 
         // konversi nilai arry ke dalam string:
         $hari = implode(',', $request->input('hari_buka'));
